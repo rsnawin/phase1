@@ -1,0 +1,115 @@
+using System.Runtime.InteropServices;
+
+namespace task
+{
+    class program
+
+    {
+        public static void Main(string[] args)
+        {   
+            bool flag =true;
+            do
+            {
+                Console.WriteLine("Enter your choice: ");
+                Console.WriteLine(" 1.Write data \n 2.Read data \n3.update data");
+                int choice = Convert.ToInt32(Console.ReadLine());
+
+
+                switch (choice)
+                {
+                    case 1:
+                        Write_Data();
+                        Console.WriteLine("Teachers data saved successfully");
+                        flag =  true;
+
+                        break;
+                    case 2:
+                        Read_Data();
+                        Console.WriteLine("Teacher data Retrived successfully..");
+                        flag = true;
+                        break;
+                    case 3:
+                        update();
+                        Console.WriteLine("Teachers data updated successfully..");
+                        flag = true;
+                        break;
+                }
+            } while ( flag == true);
+        }
+        
+
+        //creating a txt file
+        static void Write_Data()
+        {
+
+            using (StreamWriter sw = File.CreateText(@"E:\Training\task\Rainbowschool.txt"))
+            {
+
+                Console.WriteLine("Enter the id of Teacher:");
+                string id = Console.ReadLine();
+                sw.WriteLine(id);
+
+                Console.WriteLine("Enter the Name of Teacher:");
+                string Name = Console.ReadLine();
+                sw.WriteLine(Name);
+
+                Console.WriteLine("Enter the Class of Teacher:");
+                string Class = Console.ReadLine();
+                sw.WriteLine(Class);
+
+                Console.WriteLine("Enter the Section of Teacher:");
+                string Section = Console.ReadLine();
+                sw.WriteLine(Section);
+
+                sw.WriteLine("==========================");
+                sw.Close();
+            }
+            Console.WriteLine("Teachers data saved successfully");
+         }
+
+         //Update the txt file
+       static void update()
+        {
+            using (StreamWriter sw = File.AppendText(@"E:\Training\task\Rainbowschool.txt"))
+            {
+
+                Console.WriteLine("Enter the id of Teacher:");
+                string id = Console.ReadLine();
+                sw.WriteLine(id);
+
+                Console.WriteLine("Enter the Name of Teacher:");
+                string Name = Console.ReadLine();
+                sw.WriteLine(Name);
+
+                Console.WriteLine("Enter the Class of Teacher:");
+                string Class = Console.ReadLine();
+                sw.WriteLine(Class);
+
+                Console.WriteLine("Enter the Section of Teacher:");
+                string Section = Console.ReadLine();
+                sw.WriteLine(Section);
+
+                sw.WriteLine("==========================");
+                sw.Close();
+            }
+            Console.WriteLine("Teachers data saved successfully");
+
+        }
+           
+           //Retrive the txt file
+        static void Read_Data()
+        {
+            using (StreamReader sr = File.OpenText(@"E:\Training\task\Rainbowschool.txt"))
+            {
+                string data = null;
+
+                while ((data = sr.ReadLine()) != null)
+                {
+                    System.Console.WriteLine("{0}", data);
+                }
+                System.Console.WriteLine("Retrived Successfully");
+            }
+        }
+
+    }
+}
